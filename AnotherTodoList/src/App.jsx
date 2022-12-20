@@ -13,17 +13,28 @@ function App() {
     setTodoList([...todoList, newTask]);
   };
 
+  // TODO: make a new component
   const renderTask = () => {
     return todoList.map((task, key) => {
-      return <h1 key={key}>{task}</h1>;
+      return (
+        <div key={key}>
+          <h1>{task}</h1>
+          <button>X</button>
+        </div>
+      );
     });
   };
+  // TODO
+  // const deleteTask = () => {
+
+  // }
 
   return (
     <div className="App">
       <div className="addTask"></div>
       <input type="text" onChange={handleChange} />
       <button onClick={addTask}> Add Task </button>
+      <div className="list">{renderTask()}</div>
       <div className="list">{renderTask()}</div>
     </div>
   );
