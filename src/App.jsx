@@ -1,44 +1,33 @@
+import { useState } from "react";
 import "./App.css";
-import Users from "./User";
 
 function App() {
-  const planets = [
-    {
-      name: "Mars",
-      isGasPlanet: false,
-    },
-    {
-      name: "Earth",
-      isGasPlanet: false,
-    },
-    {
-      name: "Jupiter",
-      isGasPlanet: true,
-    },
-    {
-      name: "Venus",
-      isGasPlanet: false,
-    },
-    {
-      name: "Neptune",
-      isGasPlanet: true,
-    },
-    {
-      name: "Uranus",
-      isGasPlanet: true,
-    },
-  ];
+  const [count, setCount] = useState(0);
+
   return (
     <div className="App">
-      {planets.map((planet, key) => {
-        return (
-          <Users
-            key={key}
-            planetName={planet.name}
-            planetType={planet.isGasPlanet}
-          />
-        );
-      })}
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          count !== 0 && setCount(count - 1);
+        }}
+      >
+        -
+      </button>
+      <button
+        onClick={() => {
+          setCount(0);
+        }}
+      >
+        Set to Zero
+      </button>
+      {count}
     </div>
   );
 }
