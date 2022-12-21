@@ -7,9 +7,13 @@ const App = () => {
     return <div>Loading..</div>;
   }
 
+  const refetchCatFact = () => {
+    results.refetch();
+  };
+
   return (
     <div className="App">
-      <button>Generate Cat Fact</button>
+      <button onClick={refetchCatFact}>Update Cat Fact</button>
       <p>{results.data.fact}</p>
     </div>
   );
