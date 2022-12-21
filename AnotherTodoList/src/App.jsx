@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { useState } from "react";
 import Task from "./Task";
@@ -20,7 +19,6 @@ function App() {
     setTodoList([...todoList, task]);
   };
 
-  // TODO: make a new component
   const renderTask = () => {
     return todoList.map((task, key) => {
       return (
