@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useToggle } from "../useToggle";
 
 export const Project = () => {
-  const [project, setProject] = useState(false);
+  const [show, toggle] = useToggle();
   return (
     <div>
-      <button
-        onClick={() => {
-          setProject((prev) => !prev);
-        }}
-      >
-        {!project ? "Show Project" : "Hide"}
-      </button>
-      {project && <p>The Project</p>}
+      <button onClick={toggle}>{!show ? "Show Project" : "Hide"}</button>
+      {show && <h1>The Project</h1>}
     </div>
   );
 };
