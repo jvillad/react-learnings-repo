@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
+import { useState, createContext } from "react";
+import { Project } from "./pages/Project";
 import Navbar from "./Navbar";
 import Profile from "./pages/Profile";
-import { useState, createContext } from "react";
+import Form from "./pages/Form";
 
 // global context, can hold all the information of specific component
 export const AppContext = createContext();
@@ -22,6 +24,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/project" element={<Project />} />
+            <Route path="/form" element={<Form />} />
             <Route path="*" element={<h1>Page not found</h1>} />
           </Routes>
         </Router>
