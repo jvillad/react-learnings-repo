@@ -1,7 +1,17 @@
+import { useState } from "react";
+
 export const Project = () => {
+  const [project, setProject] = useState(false);
   return (
     <div>
-      <h1>Sample Project</h1>
+      <button
+        onClick={() => {
+          setProject((prev) => !prev);
+        }}
+      >
+        {!project ? "Show Project" : "Hide"}
+      </button>
+      {project && <p>The Project</p>}
     </div>
   );
 };
