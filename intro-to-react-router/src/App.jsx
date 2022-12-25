@@ -21,7 +21,17 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  name="John"
+                  email="email@email.com"
+                  age="18"
+                  progLang={["JS", "C#", "Java"]}
+                />
+              }
+            />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/learning_section" element={<LearningSection />} />
