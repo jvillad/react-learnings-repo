@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { useState, createContext } from "react";
-import { Project } from "./pages/Project";
+import { LearningSection } from "./pages/LearningSection";
 import Navbar from "./Navbar";
 import Profile from "./pages/Profile";
 import Form from "./pages/Form";
@@ -24,7 +24,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/project" element={<Project />} />
+            <Route path="/learning_section" element={<LearningSection />} />
             <Route path="/form" element={<Form />} />
             <Route path="*" element={<h1>Page not found</h1>} />
           </Routes>
