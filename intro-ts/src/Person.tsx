@@ -4,22 +4,28 @@ interface Props {
   email: string;
   age: number;
   progLang: string[];
+  framework: framework;
 }
 
-const Person = (props: Props) => {
+export enum framework {
+  Vue = "Vue",
+  Vite = "Vite",
+  React = "React",
+}
+
+export const Person = (props: Props) => {
   return (
     <div>
       <h1>Name: {props.name}</h1>
-      <h1>Name: {props.age}</h1>
-      <h1>Name: {props.email}</h1>
+      <h1>age: {props.age}</h1>
+      <h1>email: {props.email}</h1>
       <h1>
         Programming Language:
         {props.progLang.map((pl: string) => (
           <h2>{pl}</h2>
         ))}
       </h1>
+      <h1>Framework: {props.framework}</h1>
     </div>
   );
 };
-
-export default Person;

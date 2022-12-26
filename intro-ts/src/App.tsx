@@ -1,6 +1,6 @@
 import React from "react";
 
-import Person from "./Person";
+import { Person, framework } from "./Person";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
         age={30}
         email="email@email.com"
         progLang={["Javascript", "Java", "C#"]}
+        framework={framework.Vue}
       />
     </div>
   );
