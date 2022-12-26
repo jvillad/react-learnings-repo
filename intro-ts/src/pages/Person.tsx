@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+
 // definition/shape of object
 interface Props {
   name: string;
@@ -14,8 +16,10 @@ export enum framework {
 }
 
 export const Person = (props: Props) => {
+  const username = useSelector((state: any) => state.user.value.username);
   return (
     <div>
+      <h1>Logged in as: {username}</h1>
       <h1>Name: {props.name}</h1>
       <h1>age: {props.age}</h1>
       <h1>email: {props.email}</h1>
