@@ -18,7 +18,7 @@ export const Home = () => {
       <button onClick={() => dispatch(login({ username: newUsername }))}>
         Login
       </button>
-      <button> Logout </button>
+      <button onClick={() => dispatch(logout())}> Logout </button>
     </div>
   );
 };
