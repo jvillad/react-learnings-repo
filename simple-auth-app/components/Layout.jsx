@@ -1,10 +1,10 @@
 import Nav from "./Nav";
 
-function Layout() {
+function Layout({ children }) {
   return (
     <div>
       <Nav />
-      <main>{}</main>
+      <main>{children}</main>
     </div>
   );
 }
