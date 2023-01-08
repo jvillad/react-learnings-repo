@@ -15,6 +15,6 @@ module.exports = {
     "react/react-in-jsx-scope": 0,
     "react/jsx-uses-react": 0,
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
-    // "react/no-unused-prop-types": "warn",
+    "react/prop-types": "off",
   },
 };
