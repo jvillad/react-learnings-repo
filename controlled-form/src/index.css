@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --black: #0a0a0a;
+  --richblack: #011627;
+  --hotmag: #ff17e4;
+  --cream: #f1f7ed;
+  --yellow: #faa916;
+  --secondyellow: #ff9f1c;
+  --maroon: #b33951;
+  --red: #eb5160;
+  --grey: #f3f8f7;
+  --blue: #042457;
+  --opal: #f19190;
+  --darkgrey: #888;
+  --ghostwhite: #fdfffc;
+  --space: 'Space Mono', monospace;
+  --roboto: 'Roboto', sans-serif;
+  --poppins: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--cream);
+}
