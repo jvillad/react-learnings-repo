@@ -1,11 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { fetchCountries } from '../helper/fetchCountries';
+import { toTitleCase } from '../helper/toTitleCase';
 
 export default function Form() {
   const results = useQuery(['data'], fetchCountries);
+  const [fullName, setFullName] = useState();
   if (results.isLoading)
     return <h1 className="text-center p-10">Loading...</h1>;
   const countries = results.data;
+
+  const handleNameChange = (event) => {
+    setFullName(toTitleCase(event.target.value));
+  };
   return (
     <main className="h-screen flex items-center justify-center">
       <form className="bg-white flex rounded-lg w-1/2 font-latoRegular">
@@ -27,6 +34,8 @@ export default function Form() {
                 type="text"
                 name="name"
                 placeholder="Enter name here"
+                value={fullName}
+                onChange={handleNameChange}
               />
             </div>
             {/* Email Input */}
