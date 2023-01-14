@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useFormik } from 'formik';
+import Boon from '../assets/logo.png';
 import { fetchCountries } from '../helper/fetchCountries';
 import { toTitleCase } from '../helper/toTitleCase';
 
@@ -16,16 +17,18 @@ export default function Form() {
       letter: '',
     },
   });
-
+  console.log(formik.values);
   if (results.isLoading)
     return <h1 className="text-center p-10">Loading...</h1>;
   const countries = results.data;
 
   return (
     <main className="h-screen flex items-center justify-center">
-      <form className="bg-white flex rounded-lg w-1/2 font-latoRegular">
+      <form className="bg-white flex rounded-lg w-3/4 font-latoRegular">
         <div className="flex-1 text-gray-700 p-20">
-          <h1 className="text-lg font-bold py-2">Lets get started 👋🏼</h1>
+          <h1 className="text-lg font-bold py-2 text-[#f353b2]">
+            Lets get started 👋🏼
+          </h1>
           <p className="text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Exercitationem corporis ipsa natus ipsum omnis dolore officiis! Ea
@@ -56,15 +59,24 @@ export default function Form() {
                 type="text"
                 name="email"
                 placeholder="Enter email here"
+                value={formik.values.email}
+                onChange={formik.handleChange}
               />
             </div>
-            {/* Dropdown */}
+            {/* Dropdown Country */}
             <div className="pb-4">
               <label className="block text-sm p-2" htmlFor="country">
                 Country
               </label>
-              <select className="w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-teal-400 p-2 ">
-                <option></option>
+              <select
+                className="w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-teal-400 p-2"
+                name="country"
+                value={formik.values.country}
+                onChange={formik.handleChange}
+              >
+                <option value="" name="not a country">
+                  Select a country
+                </option>
                 {countries.data.map((country) => (
                   <option key={country.id}>{country.name}</option>
                 ))}
@@ -77,7 +89,7 @@ export default function Form() {
                 className="rounded-sm text-blue-800"
                 type="checkbox"
                 name="terms"
-                value="checked"
+                onChange={formik.handleChange}
               />
               <label className="text-sm" htmlFor="agreement">
                 Agree to agreement
@@ -89,13 +101,27 @@ export default function Form() {
                 className="rounded-sm text-blue-800"
                 type="checkbox"
                 name="letter"
-                value="checked"
+                onChange={formik.handleChange}
               />
               <label className="text-sm" htmlFor="letter">
                 Subscribe to newsletter
               </label>
             </div>
           </div>
+
+          <button
+            className="py-3 mt-6 rounded-lg w-full text-sm bg-[#2babe7] text-white"
+            type="submit"
+          >
+            Start clacking
+          </button>
+        </div>
+        <div className="flex items-center">
+          <img
+            src={Boon}
+            className="align-bottom h-96 py-2 pr-4 ml-8"
+            alt="boon tribe avatar"
+          />
         </div>
       </form>
     </main>
