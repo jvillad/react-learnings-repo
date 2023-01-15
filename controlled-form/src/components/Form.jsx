@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import Boon from '../assets/logo.png';
 import { fetchCountries } from '../helper/fetchCountries';
+import * as Yup from 'yup';
 import { toTitleCase } from '../helper/toTitleCase';
 
 export default function Form() {
@@ -16,15 +17,33 @@ export default function Form() {
       terms: '',
       letter: '',
     },
+
+    // form validation
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .max(24, 'Name exceed 24 max character')
+        .required('Name is required'),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
+      country: Yup.string().required('Select a country'),
+      terms: Yup.array().required('You must agree to the terms of service'),
+    }),
+
+    // on submit form
+    onSubmit: (values) => {},
   });
-  console.log(formik.values);
+  console.log(formik.errors);
   if (results.isLoading)
     return <h1 className="text-center p-10">Loading...</h1>;
   const countries = results.data;
 
   return (
     <main className="h-screen flex items-center justify-center">
-      <form className="bg-white flex rounded-lg w-3/4 font-latoRegular">
+      <form
+        className="bg-white flex rounded-lg w-3/4 font-latoRegular"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="flex-1 text-gray-700 p-20">
           <h1 className="text-lg font-bold py-2 text-[#f353b2]">
             Lets get started 👋🏼
@@ -37,8 +56,17 @@ export default function Form() {
           <div className="mt-6">
             {/* Name input */}
             <div className="pb-4">
-              <label className="block text-sm p-2" htmlFor="name">
-                Name
+              <label
+                className={`block text-sm p-2 ${
+                  formik.touched.name && formik.errors.name
+                    ? 'text-red-600'
+                    : ''
+                }`}
+                htmlFor="name"
+              >
+                {formik.touched.name && formik.errors.name
+                  ? formik.errors.name
+                  : 'Name'}
               </label>
               <input
                 className="border-2 border-gray-400 p-2 rounded-md w-1/2 focus:border-teal-400"
@@ -51,8 +79,17 @@ export default function Form() {
             </div>
             {/* Email Input */}
             <div className="pb-4">
-              <label className="block text-sm p-2" htmlFor="email">
-                Email
+              <label
+                className={`block text-sm p-2 ${
+                  formik.touched.email && formik.errors.email
+                    ? 'text-red-600'
+                    : ''
+                }`}
+                htmlFor="email"
+              >
+                {formik.touched.email && formik.errors.email
+                  ? formik.errors.email
+                  : 'Email'}
               </label>
               <input
                 className="border-2 border-gray-400 p-2 rounded-md w-1/2 focus:border-teal-400"
@@ -113,7 +150,7 @@ export default function Form() {
             className="py-3 mt-6 rounded-lg w-full text-sm bg-[#2babe7] text-white"
             type="submit"
           >
-            Start clacking
+            Start clacking!
           </button>
         </div>
         <div className="flex items-center">
