@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
+type Props = {
+  selected: number;
+};
+
 function Pagination() {
-  const [theData, setTheData] = useState<any>();
+  const [theData, setTheData] = useState<number[]>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [pageCount, setPageCount] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -13,7 +16,6 @@ function Pagination() {
 
   const fetchItems = async () => {
     setLoading(true);
-    setError(null);
     try {
       const response = await fetch(`https://api.guildwars2.com/v2/items`);
       const data = await response.json();
@@ -21,8 +23,9 @@ function Pagination() {
         setPageCount(Math.ceil(data.length / itemPerPage));
         setTheData(data);
       }
-    } catch (err: any) {
-      setError(err);
+    } catch (err: unknown) {
+      // eslint-disable-next-line no-console
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -41,7 +44,7 @@ function Pagination() {
         );
       });
 
-  const changePage = ({ selected }: any) => {
+  const changePage = ({ selected }: Props) => {
     setCurrentPage(selected);
   };
 
@@ -59,30 +62,32 @@ function Pagination() {
         </div>
       </div>
       {loading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+
       <div className="">{displayItems}</div>
-      <ReactPaginate
-        className="bg-gray-200 flex flex-row justify-evenly items-center p-4"
-        previousLabel={
-          <button
-            type="button"
-            className="border border-purple-600 text-purple-600 font-montserrat p-2 font-md rounded hover:bg-purple-600 hover:text-white transition-all duration-300"
-          >
-            Prev
-          </button>
-        }
-        nextLabel={
-          <button
-            type="button"
-            className="border border-purple-600 text-purple-600 font-montserrat p-2 font-md rounded hover:bg-purple-600 hover:text-white transition-all duration-300"
-          >
-            Next
-          </button>
-        }
-        pageCount={pageCount}
-        onPageChange={changePage}
-        activeClassName="bg-purple-600 text-white p-2"
-      />
+      {theData && (
+        <ReactPaginate
+          className="bg-gray-200 flex flex-row justify-evenly items-center p-4"
+          previousLabel={
+            <button
+              type="button"
+              className="border border-purple-600 text-purple-600 font-montserrat p-2 font-md rounded hover:bg-purple-600 hover:text-white transition-all duration-300"
+            >
+              Prev
+            </button>
+          }
+          nextLabel={
+            <button
+              type="button"
+              className="border border-purple-600 text-purple-600 font-montserrat p-2 font-md rounded hover:bg-purple-600 hover:text-white transition-all duration-300"
+            >
+              Next
+            </button>
+          }
+          pageCount={pageCount}
+          onPageChange={changePage}
+          activeClassName="bg-purple-600 text-white p-2"
+        />
+      )}
     </div>
   );
 }
