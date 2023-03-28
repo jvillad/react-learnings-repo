@@ -1,4 +1,6 @@
-export type Status = "good" | "bad" | "normal";
+export type Status = " S" | " A" | " B";
+
+export const resortTypes: Status[] = [" S", " A", " B"];
 
 export interface IData {
   id: number;
