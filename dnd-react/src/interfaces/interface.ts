@@ -1,6 +1,7 @@
-export type Status = " S" | " A" | " B";
+/* eslint-disable no-unused-vars */
+export type Status = "S" | "A" | "B";
 
-export const resortTypes: Status[] = [" S", " A", " B"];
+export const resortTypes: Status[] = ["S", "A", "B"];
 
 export interface IData {
   id: number;
@@ -10,4 +11,17 @@ export interface IData {
 
 export interface IProps {
   status: Status;
+}
+
+export interface ItemProps {
+  data: IData;
+  handleDragging: (dragging: boolean) => void;
+}
+
+export interface CardContainerProps {
+  items: IData[];
+  status: Status;
+  isDragging: boolean;
+  handleDragging: (dragging: boolean) => void;
+  handleUpdateList: (id: number, status: Status) => void;
 }
