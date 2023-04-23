@@ -8,9 +8,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <div className="bg-stone-900 h-screen text-white">
       <BrowserRouter>
-        <Nav />
+        <div className="mb-20">
+          <Nav />
+        </div>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/machines" element={<Machines />} />
