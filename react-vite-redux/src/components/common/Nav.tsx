@@ -10,12 +10,12 @@ const Header = () => {
         >
           HOME
         </NavLink>
-        {/* <NavLink
-          to="/machines"
+        <NavLink
+          to="/items"
           className={(props) => (props.isActive ? 'text-orange-800' : '')}
         >
           SHOP
-        </NavLink> */}
+        </NavLink>
         <NavLink
           to="/about"
           className={(props) => (props.isActive ? 'text-orange-800' : '')}
